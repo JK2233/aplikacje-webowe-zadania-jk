@@ -7,6 +7,7 @@ import CategoryBar from './components/CategoryBar'
 import Gallery from './components/Gallery'
 import Footer from './components/Footer'
 import AddPhotoModal from './components/AddPhotoModal.jsx'
+import FilltersOffCanvas from './components/FilltersOffCanvas.jsx'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -52,6 +53,7 @@ function App() {
       <Footer />
 
       <AddPhotoModal />
+      <FilltersOffCanvas />
     </>
   )
 }
