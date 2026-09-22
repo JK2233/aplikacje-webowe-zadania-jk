@@ -6,6 +6,7 @@ import Navbar from './components/Navbar'
 import CategoryBar from './components/CategoryBar'
 import Gallery from './components/Gallery'
 import Footer from './components/Footer'
+import AddPhotoModal from './components/AddPhotoModal.jsx'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -13,6 +14,7 @@ function App() {
   return (
     <>
       <Navbar />
+      
       <header className="container py-4 py-lg-5">
         <div className="row align-items-center g-3">
           <div className="col-12 col-lg-8">
@@ -48,6 +50,8 @@ function App() {
       </main>
 
       <Footer />
+
+      <AddPhotoModal />
     </>
   )
 }
