@@ -9,9 +9,13 @@ import Footer from './components/Footer'
 import AddPhotoModal from './components/AddPhotoModal.jsx'
 import FilltersOffCanvas from './components/FilltersOffCanvas.jsx'
 
-function App() {
-  const [count, setCount] = useState(0)
+import photosRaw from './data/photos.json'
 
+
+function App() {
+  const [count, setCount] = useState(0);
+  const [photos, setPhotos] = useState(photosRaw);
+  
   return (
     <>
       <Navbar />
@@ -47,7 +51,7 @@ function App() {
 
       <main className="container">
         <CategoryBar />
-        <Gallery />
+        <Gallery photos={photos}/>
       </main>
 
       <Footer />
