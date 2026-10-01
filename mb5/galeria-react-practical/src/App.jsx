@@ -20,6 +20,11 @@ function App() {
   function usunZdjecie(id) {
     setPhotos(photos.filter(z => z.id !== id))
   }
+  function dodajZdjecie(nowe) {
+    const noweId = Math.max(...photos.map(z => z.id)) + 1
+      setPhotos([...photos, { ...nowe, id: noweId, favorite: false
+    }])
+  }
 
   const widoczne =
     aktywnaKategoria === 'wszystkie'
