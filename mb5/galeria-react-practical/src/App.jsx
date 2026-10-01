@@ -76,7 +76,7 @@ function App() {
 
       <Footer />
 
-      <AddPhotoModal />
+      <AddPhotoModal onDodaj={dodajZdjecie} />
       <FilltersOffCanvas />
     </>
   )
