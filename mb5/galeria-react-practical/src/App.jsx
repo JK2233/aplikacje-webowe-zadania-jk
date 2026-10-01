@@ -13,7 +13,7 @@ import photosRaw from './data/photos.json'
 
 
 function App() {
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
   const [photos, setPhotos] = useState(photosRaw);
   const [aktywnaKategoria, setAktywnaKategoria] = useState('wszystkie');
 
@@ -26,7 +26,7 @@ function App() {
     }])
   }
   function przelaczUlubione(id) {
-    setZdjecia(
+    setPhotos(
       photos.map(z => (z.id === id ? { ...z, favorite: !z.favorite } : z))
     )
   }
@@ -78,15 +78,17 @@ function App() {
             Nie znaleziono zdjęć w tej kategorii.
           </div>
         )}
-        <Gallery zdjecia={widoczne} onUsun={usunZdjecie}/>
+        <Gallery 
+          zdjecia={widoczne}
+          onUsun={usunZdjecie}
+          onPrzelacz={przelaczUlubione}
+        />
       </main>
 
       <Footer />
 
       <AddPhotoModal 
-        zdjecia={widoczne}
-        onUsun={usunZdjecie}
-        onPrzelacz={przelaczUlubione}
+        onDodaj={ dodajZdjecie }
       />
       <FilltersOffCanvas />
     </>
