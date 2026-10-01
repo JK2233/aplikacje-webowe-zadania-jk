@@ -25,7 +25,11 @@ function App() {
       setPhotos([...photos, { ...nowe, id: noweId, favorite: false
     }])
   }
-
+  function przelaczUlubione(id) {
+    setZdjecia(
+      photos.map(z => (z.id === id ? { ...z, favorite: !z.favorite } : z))
+    )
+  }
   const widoczne =
     aktywnaKategoria === 'wszystkie'
     ? photos
@@ -74,12 +78,16 @@ function App() {
             Nie znaleziono zdjęć w tej kategorii.
           </div>
         )}
-        <Gallery photos={widoczne} onUsun={usunZdjecie}/>
+        <Gallery zdjecia={widoczne} onUsun={usunZdjecie}/>
       </main>
 
       <Footer />
 
-      <AddPhotoModal onDodaj={dodajZdjecie} />
+      <AddPhotoModal 
+        zdjecia={widoczne}
+        onUsun={usunZdjecie}
+        onPrzelacz={przelaczUlubione}
+      />
       <FilltersOffCanvas />
     </>
   )
