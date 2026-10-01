@@ -6,6 +6,7 @@
     "category": "gory",
     "image": "https://picsum.photos/seed/morskie-oko/600/400",
     "imageLarge": "https://picsum.photos/seed/morskie-oko/1200/800",
+    "favorite": false,
     "alt": "Tafla jeziora w Tatrach tuż przed wschodem słońca."
   },
   {
@@ -15,6 +16,7 @@
     "category": "gory",
     "image": "https://picsum.photos/seed/gran-tatry/600/400",
     "imageLarge": "https://picsum.photos/seed/gran-tatry/1200/800",
+    "favorite": false,
     "alt": "Szlak granią w porannej mgle, widok na dolinę."
   },
   {
@@ -24,6 +26,7 @@
     "category": "gory",
     "image": "https://picsum.photos/seed/schronisko/600/400",
     "imageLarge": "https://picsum.photos/seed/schronisko/1200/800",
+    "favorite": false,
     "alt": "Drewniane schronisko na przełęczy, koniec dnia marszu."
   },
   {
@@ -33,6 +36,7 @@
     "category": "morze",
     "image": "https://picsum.photos/seed/latarnia/600/400",
     "imageLarge": "https://picsum.photos/seed/latarnia/1200/800",
+    "favorite": false,
     "alt": "Biała latarnia na klifie, widziana od strony plaży."
   },
   {
@@ -42,6 +46,7 @@
     "category": "morze",
     "image": "https://picsum.photos/seed/fale-poranek/600/400",
     "imageLarge": "https://picsum.photos/seed/fale-poranek/1200/800",
+    "favorite": false,
     "alt": "Pusta plaża i długa fala tuż po wschodzie słońca."
   },
   {
@@ -51,6 +56,7 @@
     "category": "morze",
     "image": "https://picsum.photos/seed/port-rybacki/600/400",
     "imageLarge": "https://picsum.photos/seed/port-rybacki/1200/800",
+    "favorite": false,
     "alt": "Kutry przy nabrzeżu, sieci rozwieszone do suszenia."
   },
   {
@@ -60,6 +66,7 @@
     "category": "miasto",
     "image": "https://picsum.photos/seed/starowka/600/400",
     "imageLarge": "https://picsum.photos/seed/starowka/1200/800",
+    "favorite": false,
     "alt": "Rynek w świetle latarni, długi czas naświetlania."
   },
   {
@@ -69,6 +76,7 @@
     "category": "miasto",
     "image": "https://picsum.photos/seed/most-rzeka/600/400",
     "imageLarge": "https://picsum.photos/seed/most-rzeka/1200/800",
+    "favorite": false,
     "alt": "Stalowa konstrukcja mostu i panorama miasta w tle."
   }
 ]
