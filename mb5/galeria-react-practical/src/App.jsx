@@ -18,7 +18,7 @@ function App() {
   const [aktywnaKategoria, setAktywnaKategoria] = useState('wszystkie');
 
   function usunZdjecie(id) {
-    setZdjecia(zdjecia.filter(z => z.id !== id))
+    setPhotos(photos.filter(z => z.id !== id))
   }
 
   const widoczne =
