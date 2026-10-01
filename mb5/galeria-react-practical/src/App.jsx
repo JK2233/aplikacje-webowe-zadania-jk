@@ -17,6 +17,9 @@ function App() {
   const [photos, setPhotos] = useState(photosRaw);
   const [aktywnaKategoria, setAktywnaKategoria] = useState('wszystkie');
 
+  function usunZdjecie(id) {
+    setZdjecia(zdjecia.filter(z => z.id !== id))
+  }
 
   const widoczne =
     aktywnaKategoria === 'wszystkie'
@@ -63,7 +66,7 @@ function App() {
             Nie znaleziono zdjęć w tej kategorii.
           </div>
         )}
-        <Gallery photos={widoczne} />
+        <Gallery photos={widoczne} onUsun={usunZdjecie}/>
       </main>
 
       <Footer />

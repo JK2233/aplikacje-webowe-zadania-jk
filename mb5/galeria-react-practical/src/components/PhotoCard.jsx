@@ -22,6 +22,9 @@ function PhotoCard({ id, title, description, category, image, alt }) {
           data-bs-target={`#zdjecie${id}`}>
           Powiększ
         </button>
+        <button type="button" className="btn btn-outline-danger" onClick={onUsun}>
+          Usuń
+        </button>
       </div>
     </div>
   )
