@@ -9,8 +9,31 @@ import Footer from './components/Footer'
 import AddPhotoModal from './components/AddPhotoModal.jsx'
 import FilltersOffCanvas from './components/FilltersOffCanvas.jsx'
 
+import photosRaw from './data/photos.json'
+
+
 function App() {
-  const [count, setCount] = useState(0)
+  // const [count, setCount] = useState(0);
+  const [photos, setPhotos] = useState(photosRaw);
+  const [aktywnaKategoria, setAktywnaKategoria] = useState('wszystkie');
+
+  function usunZdjecie(id) {
+    setPhotos(photos.filter(z => z.id !== id))
+  }
+  function dodajZdjecie(nowe) {
+    const noweId = Math.max(...photos.map(z => z.id)) + 1
+      setPhotos([...photos, { ...nowe, id: noweId, favorite: false
+    }])
+  }
+  function przelaczUlubione(id) {
+    setPhotos(
+      photos.map(z => (z.id === id ? { ...z, favorite: !z.favorite } : z))
+    )
+  }
+  const widoczne =
+    aktywnaKategoria === 'wszystkie'
+    ? photos
+    : photos.filter(z => z.category === aktywnaKategoria)
 
   return (
     <>
@@ -46,13 +69,27 @@ function App() {
       </header>
 
       <main className="container">
-        <CategoryBar />
-        <Gallery />
+        <CategoryBar aktywna={aktywnaKategoria} onWybierz={setAktywnaKategoria} />
+        <p className="text-body-secondary">
+          Wyświetlono {widoczne.length} z {photos.length} zdjęć
+        </p>
+        {widoczne.length === 0 && (
+          <div className="alert alert-warning">
+            Nie znaleziono zdjęć w tej kategorii.
+          </div>
+        )}
+        <Gallery 
+          zdjecia={widoczne}
+          onUsun={usunZdjecie}
+          onPrzelacz={przelaczUlubione}
+        />
       </main>
 
       <Footer />
 
-      <AddPhotoModal />
+      <AddPhotoModal 
+        onDodaj={ dodajZdjecie }
+      />
       <FilltersOffCanvas />
     </>
   )
