@@ -7,6 +7,7 @@ const kursy = [
   'Wprowadzenie do SQL',
 ]
 function App() {
+  const [status, setStatus] = useState(null)
   const [rosnaco, setRosnaco] = useState(true)
   const imieNazwiskoRef = useRef(null)
   const numerKursuRef = useRef(null)
@@ -22,15 +23,17 @@ function App() {
 
   function handleSubmit(event) {
     event.preventDefault()
-    
     const imienazwisko = imieNazwiskoRef.current.value
     const numerkursu = Number(numerKursuRef.current.value)
     const kurs = kursy[numerkursu - 1]
+    
     console.log(imienazwisko)
     if (kurs !== undefined) {
       console.log(kurs)
+      setStatus({ typ: 'sukces', tresc: `${imienazwisko} zapisany(-a) na kurs: ${kurs}` })
     } else {
       console.log('Nieprawidłowy numer kursu')
+      setStatus({ typ: 'blad', tresc: 'Nieprawidłowy numer kursu' })
     }
   }
 
@@ -57,6 +60,11 @@ function App() {
       <p className="text-body-secondary">
         Znaleziono {widoczne.length} z {kursy.length} kursów
       </p>
+      {status && (
+        <div className={`alert alert-${status.typ === 'sukces' ? 'success' : 'danger'}`}>
+          {status.tresc}
+        </div>
+      )}
       <ol>
         {widoczne.map(({ kurs, numer }) => (
           <li key={numer} value={numer}>{kurs}</li>
