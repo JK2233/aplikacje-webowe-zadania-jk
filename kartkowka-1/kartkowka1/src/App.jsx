@@ -9,7 +9,6 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 function App() {
   const imieNazwiskoRef = useRef(null);
   const numerSystemuRef = useRef(null);
-  // const [count, setCount] = useState(0)
   
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -36,13 +35,13 @@ function App() {
       </ol>
       <form onSubmit={handleSubmit}>
         <div className='form-group'>
-          <label for="nameSurname">
+          <label htmlFor="nameSurname">
             Imię i nazwisko:<br/>
           </label>
           <input id='nameSurname' type="text" className='form-control' ref={imieNazwiskoRef} />
         </div>
         <div className='form-group'>
-          <label for="os">
+          <label htmlFor="os">
             Numer systemu operacyjnego:<br/>
           </label>
           <input id='os' type="number" className='form-control' ref={numerSystemuRef} />
