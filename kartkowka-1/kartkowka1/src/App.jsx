@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import './App.css'
 import { useRef } from 'react';
 import systemy from './data/systemy';
