@@ -1,14 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import { useRef } from 'react';
-
-const systemy = [
-  "Windows",
-  "macOS",
-  "Linux",
-  "Android",
-  "iOS",
-];
+import systemy from './data/systemy';
 
 function App() {
   const [count, setCount] = useState(0)
