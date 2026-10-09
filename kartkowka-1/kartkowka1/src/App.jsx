@@ -26,8 +26,8 @@ function App() {
     }
   };
   return (
-    <div>
-      <h2>Liczba systemów operacyjnych: {systemy.length}</h2>
+    <div className='container'>
+      <h3 className='h3'>Liczba systemów operacyjnych: {systemy.length}</h3>
       
       <ol>
         {systemy.map((pozycja, index) => (
@@ -35,19 +35,20 @@ function App() {
         ))}
       </ol>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>
-            Imię i nazwisko:
-            <input type="text" ref={imieNazwiskoRef} />
+        <div className='form-group'>
+          <label for="nameSurname">
+            Imię i nazwisko:<br/>
           </label>
+          <input id='nameSurname' type="text" className='form-control' ref={imieNazwiskoRef} />
         </div>
-        <div>
-          <label>
-            Numer systemu operacyjnego:
-            <input type="number" ref={numerSystemuRef} />
+        <div className='form-group'>
+          <label for="os">
+            Numer systemu operacyjnego:<br/>
           </label>
+          <input id='os' type="number" className='form-control' ref={numerSystemuRef} />
         </div>
-        <button type="submit">Zatwierdź wybór</button>
+        <br />
+        <button type="submit" className='btn btn-primary'>Zatwierdź wybór</button>
       </form>
     </div>
   );
