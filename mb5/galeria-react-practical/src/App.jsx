@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import './App.css'
@@ -14,16 +14,32 @@ import FilltersOffCanvas from './components/FilltersOffCanvas.jsx'
 
 function App() {
   // const [count, setCount] = useState(0);
-  const [photosRaw, setZdjecia] = useState([]);
-  const [photos, setPhotos] = useState(photosRaw);
+  // const [photosRaw, setZdjecia] = useState([]);
+  const [photos, setPhotos] = useState([]);
   const [aktywnaKategoria, setAktywnaKategoria] = useState('wszystkie');
+
+  useEffect(() => {
+    async function pobierzZdjecia() {
+      try {
+        const odpowiedz = await fetch('/photos.json')
+        if (!odpowiedz.ok) throw new Error('Błąd serwera: ' +
+          odpowiedz.status)
+        const dane = await odpowiedz.json()
+        setPhotos(dane)
+      } catch (err) {
+        console.log(err.message)
+      }
+    }
+    pobierzZdjecia()
+  }, [])
 
   function usunZdjecie(id) {
     setPhotos(photos.filter(z => z.id !== id))
   }
   function dodajZdjecie(nowe) {
     const noweId = Math.max(...photos.map(z => z.id)) + 1
-      setPhotos([...photos, { ...nowe, id: noweId, favorite: false
+    setPhotos([...photos, {
+      ...nowe, id: noweId, favorite: false
     }])
   }
   function przelaczUlubione(id) {
@@ -33,13 +49,13 @@ function App() {
   }
   const widoczne =
     aktywnaKategoria === 'wszystkie'
-    ? photos
-    : photos.filter(z => z.category === aktywnaKategoria)
+      ? photos
+      : photos.filter(z => z.category === aktywnaKategoria)
 
   return (
     <>
       <Navbar />
-      
+
       <header className="container py-4 py-lg-5">
         <div className="row align-items-center g-3">
           <div className="col-12 col-lg-8">
@@ -79,7 +95,7 @@ function App() {
             Nie znaleziono zdjęć w tej kategorii.
           </div>
         )}
-        <Gallery 
+        <Gallery
           zdjecia={widoczne}
           onUsun={usunZdjecie}
           onPrzelacz={przelaczUlubione}
@@ -88,8 +104,8 @@ function App() {
 
       <Footer />
 
-      <AddPhotoModal 
-        onDodaj={ dodajZdjecie }
+      <AddPhotoModal
+        onDodaj={dodajZdjecie}
       />
       <FilltersOffCanvas />
     </>
