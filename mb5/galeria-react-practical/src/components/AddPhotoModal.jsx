@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Modal } from "bootstrap";
+
 const PUSTY_FORMULARZ = {
   title: "",
   category: "",
@@ -7,15 +7,19 @@ const PUSTY_FORMULARZ = {
   alt: "",
   description: "",
 };
+
 function AddPhotoModal({ onDodaj }) {
   const [formularz, setFormularz] = useState(PUSTY_FORMULARZ);
+
   function zmienPole(pole) {
     return function (event) {
       setFormularz({ ...formularz, [pole]: event.target.value });
     };
   }
+
   function obslugaSubmit(event) {
     event.preventDefault();
+    
     onDodaj({
       title: formularz.title,
       category: formularz.category,
@@ -24,9 +28,10 @@ function AddPhotoModal({ onDodaj }) {
       alt: formularz.alt,
       description: formularz.description,
     });
+    
     setFormularz(PUSTY_FORMULARZ);
-    Modal.getInstance(document.getElementById("dodajZdjecie"))?.hide();
   }
+
   return (
     <div
       className="modal fade"
@@ -61,6 +66,7 @@ function AddPhotoModal({ onDodaj }) {
                     id="tytul"
                     value={formularz.title}
                     onChange={zmienPole("title")}
+                    required
                   />
                 </div>
                 <div className="col-md-6">
@@ -72,6 +78,7 @@ function AddPhotoModal({ onDodaj }) {
                     id="kategoria"
                     value={formularz.category}
                     onChange={zmienPole("category")}
+                    required
                   >
                     <option value="" disabled>
                       Wybierz kategorię…
@@ -92,6 +99,7 @@ function AddPhotoModal({ onDodaj }) {
                     placeholder="https://…"
                     value={formularz.image}
                     onChange={zmienPole("image")}
+                    required
                   />
                 </div>
                 <div className="col-12">
@@ -106,8 +114,7 @@ function AddPhotoModal({ onDodaj }) {
                     onChange={zmienPole("alt")}
                   />
                   <div className="form-text">
-                    Krótki opis zdjęcia dla osób korzystających z czytnika
-                    ekranu.
+                    Krótki opis zdjęcia dla osób korzystających z czytnika ekranu.
                   </div>
                 </div>
                 <div className="col-12">
@@ -131,6 +138,7 @@ function AddPhotoModal({ onDodaj }) {
                       className="form-check-input"
                       type="checkbox"
                       id="zgoda"
+                      required
                     />
                     <label className="form-check-label" htmlFor="zgoda">
                       Zgadzam się na publikację zdjęcia w galerii
@@ -147,7 +155,12 @@ function AddPhotoModal({ onDodaj }) {
               >
                 Anuluj
               </button>
-              <button type="submit" className="btn btn-primary">
+              {/* Dodano data-bs-dismiss="modal", które poprawnie zamknie modal i posprząta tło */}
+              <button
+                type="submit"
+                className="btn btn-primary"
+                data-bs-dismiss="modal"
+              >
                 Zapisz
               </button>
             </div>
@@ -157,4 +170,5 @@ function AddPhotoModal({ onDodaj }) {
     </div>
   );
 }
+
 export default AddPhotoModal;
