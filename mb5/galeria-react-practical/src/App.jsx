@@ -18,8 +18,7 @@ function App() {
   const [zdjecia, setZdjecia] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
-  const [aktywnaKategoria, setAktywnaKategoria] =
-    useState('wszystkie')
+  const [aktywnaKategoria, setAktywnaKategoria] = useState('wszystkie')
   useEffect(() => {
     async function pobierzZdjecia() {
       try {
@@ -38,7 +37,7 @@ function App() {
   }, [])
 
   function usunZdjecie(id) {
-    setzdjecia(zdjecia.filter(z => z.id !== id))
+    setZdjecia(zdjecia.filter(z => z.id !== id))
   }
   function dodajZdjecie(nowe) {
     const noweId = Math.max(...zdjecia.map(z => z.id)) + 1
