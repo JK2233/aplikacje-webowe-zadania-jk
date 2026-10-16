@@ -9,15 +9,15 @@ import Footer from './components/Footer'
 import AddPhotoModal from './components/AddPhotoModal.jsx'
 import FilltersOffCanvas from './components/FilltersOffCanvas.jsx'
 
-// import photosRaw from './data/photos.json'
+// import zdjeciaRaw from './data/photos.json'
 
 
 function App() {
-  // const [count, setCount] = useState(0);
-  // const [photosRaw, setZdjecia] = useState([]);
-  const [photos, setPhotos] = useState([]);
-  const [aktywnaKategoria, setAktywnaKategoria] = useState('wszystkie');
-
+  const [zdjecia, setZdjecia] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState(null)
+  const [aktywnaKategoria, setAktywnaKategoria] =
+    useState('wszystkie')
   useEffect(() => {
     async function pobierzZdjecia() {
       try {
@@ -25,32 +25,53 @@ function App() {
         if (!odpowiedz.ok) throw new Error('Błąd serwera: ' +
           odpowiedz.status)
         const dane = await odpowiedz.json()
-        setPhotos(dane)
+        setZdjecia(dane)
       } catch (err) {
-        console.log(err.message)
+        setError(err.message)
+      } finally {
+        setIsLoading(false)
       }
     }
     pobierzZdjecia()
   }, [])
 
   function usunZdjecie(id) {
-    setPhotos(photos.filter(z => z.id !== id))
+    setzdjecia(zdjecia.filter(z => z.id !== id))
   }
   function dodajZdjecie(nowe) {
-    const noweId = Math.max(...photos.map(z => z.id)) + 1
-    setPhotos([...photos, {
+    const noweId = Math.max(...zdjecia.map(z => z.id)) + 1
+    setZdjecia([...zdjecia, {
       ...nowe, id: noweId, favorite: false
     }])
   }
   function przelaczUlubione(id) {
-    setPhotos(
-      photos.map(z => (z.id === id ? { ...z, favorite: !z.favorite } : z))
+    setZdjecia(
+      zdjecia.map(z => (z.id === id ? { ...z, favorite: !z.favorite } : z))
     )
   }
   const widoczne =
     aktywnaKategoria === 'wszystkie'
-      ? photos
-      : photos.filter(z => z.category === aktywnaKategoria)
+      ? zdjecia
+      : zdjecia.filter(z => z.category === aktywnaKategoria)
+
+  if (isLoading) {
+    return (
+      <div className="text-center mt-5">
+        <div className="spinner-border text-primary" role="status" />
+        <p className="mt-2 text-muted">Ładowanie galerii...</p>
+      </div>
+    )
+  }
+  if (error) {
+    return (
+      <div className="alert alert-danger m-4">
+        Nie udało się pobrać danych: {error}
+      </div>
+    )
+  }
+  if (zdjecia.length === 0) {
+    return <div className="alert alert-secondary m-4">Katalog jest na razie pusty.</div>
+  }
 
   return (
     <>
@@ -88,7 +109,7 @@ function App() {
       <main className="container">
         <CategoryBar aktywna={aktywnaKategoria} onWybierz={setAktywnaKategoria} />
         <p className="text-body-secondary">
-          Wyświetlono {widoczne.length} z {photos.length} zdjęć
+          Wyświetlono {widoczne.length} z {zdjecia.length} zdjęć
         </p>
         {widoczne.length === 0 && (
           <div className="alert alert-warning">
