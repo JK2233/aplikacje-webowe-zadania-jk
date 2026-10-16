@@ -9,11 +9,12 @@ import Footer from './components/Footer'
 import AddPhotoModal from './components/AddPhotoModal.jsx'
 import FilltersOffCanvas from './components/FilltersOffCanvas.jsx'
 
-import photosRaw from './data/photos.json'
+// import photosRaw from './data/photos.json'
 
 
 function App() {
   // const [count, setCount] = useState(0);
+  const [photosRaw, setZdjecia] = useState([]);
   const [photos, setPhotos] = useState(photosRaw);
   const [aktywnaKategoria, setAktywnaKategoria] = useState('wszystkie');
 
