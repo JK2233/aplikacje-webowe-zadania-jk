@@ -14,3 +14,4 @@ export function useZdjecia() {
   }, [])
   return { zdjecia, setZdjecia, isLoading, error }
 }
+export default useZdjecia;

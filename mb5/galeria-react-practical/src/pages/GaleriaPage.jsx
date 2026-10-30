@@ -30,11 +30,10 @@ function GaleriaPage() {
     <>
       <header className="container py-4 d-flex justify-contentbetween align-items-center">
         <h1 className="mb-0">Galeria zdjęć</h1>
-        <Link to="/dodaj" className="btn btn-primary">Dodaj zdjęcie</Link>
+        {/* <Link to="/dodaj" className="btn btn-primary">Dodaj zdjęcie</Link> */}
       </header>
       <main className="container">
-        <CategoryBar aktywna={aktywnaKategoria}
-          onWybierz={setAktywnaKategoria} />
+        <CategoryBar aktywna={aktywnaKategoria} onWybierz={setAktywnaKategoria} />
         <p className="text-body-secondary">
           Wyświetlono {widoczne.length} z {zdjecia.length} zdjęć
         </p>
