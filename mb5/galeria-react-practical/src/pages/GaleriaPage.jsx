@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import { useZdjecia } from '../hooks/useZdjecia.js'
 import { usunZdjecie, przelaczUlubione } from '../services/zdjecia.js'
 import CategoryBar from '../components/CategoryBar.jsx'
@@ -30,7 +29,7 @@ function GaleriaPage() {
     <>
       <header className="container py-4 d-flex justify-contentbetween align-items-center">
         <h1 className="mb-0">Galeria zdjęć</h1>
-        {/* <Link to="/dodaj" className="btn btn-primary">Dodaj zdjęcie</Link> */}
+        {/* <Link to  ="/dodaj" className="btn btn-primary">Dodaj zdjęcie</Link> */}
       </header>
       <main className="container">
         <CategoryBar aktywna={aktywnaKategoria} onWybierz={setAktywnaKategoria} />
