@@ -29,8 +29,6 @@ function App() {
     rosnaco ? a.czas - b.czas : b.czas - a.czas
   )
 
-
-
   return (
     <div className="container mt-4">
       <h1>Książka przepisów</h1>
